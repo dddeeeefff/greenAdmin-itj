@@ -272,7 +272,7 @@ for(int i = 0; i < detailList.size(); i++){
 		<input type="hidden" name="si_upoint" id="si_upoint" value="<%=sellInfo.getSi_upoint() %>" />
 		<input type="hidden" name="si_id" id="si_id" value="<%=sellInfo.getSi_id() %>" />
 		<input type="hidden" name="getStatus" id="getStatus" value="" />
-		<input class="btn" type="button" value="취소" onclick="location.href='/greenAdmin/sell_list'" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn" type="button" value="확인" onclick="sendData();" />
+		<input class="btn" type="button" value="취소" onclick="location.href='/sell_list'" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn" type="button" value="확인" onclick="sendData();" />
 	</form>
 	</div>	
 	
