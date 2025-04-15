@@ -61,23 +61,24 @@ Java 기반 JSP/Servlet 환경에서 **쇼핑몰 관리자(Admin) 전용 백오�
 ---
 
 ## 📷 시연 화면
-- 어드민 메인페이지(대략적으로 정보 조회 가능)
-- ![ERD](WebContent/img/admin-main.png)
 
-- 주문
-- ![ERD](WebContent/gif/order.gif)
+- 어드민 메인페이지(대략적으로 정보 조회 가능)  
+  <img src="WebContent/img/admin-main.png" width="600" />
 
-- 포인트 적립 확인
-- ![ERD](WebContent/gif/point.gif)
+- 주문  
+  <img src="WebContent/gif/order.gif" width="600" />
 
-- 주문 취소
-- ![ERD](WebContent/gif/point.gif)
+- 포인트 적립 확인  
+  <img src="WebContent/gif/point.gif" width="600" />
 
-- 재고 수량 관리
-- ![ERD](WebContent/gif/stockquantity.gif)
+- 주문 취소  
+  <img src="WebContent/gif/point.gif" width="600" />
 
-- 조건에 맞는 검색기능
-- ![ERD](WebContent/gif/search.gif)
+- 재고 수량 관리  
+  <img src="WebContent/gif/stockquantity.gif" width="600" />
+
+- 조건에 맞는 검색기능  
+  <img src="WebContent/gif/search.gif" width="600" />
 ---
 
 ## 🧑‍💻 담당 역할
