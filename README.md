@@ -60,9 +60,24 @@ Java 기반 JSP/Servlet 환경에서 **쇼핑몰 관리자(Admin) 전용 백오�
 
 ---
 
-## 📷 시연 화면 (선택)
-> 📸 캡처 또는 GIF로 관리자 페이지에서 구매 승인 및 송장 등록 화면 삽입 가능
+## 📷 시연 화면
+- 어드민 메인페이지(대략적으로 정보 조회 가능)
+- ![ERD](WebContent/img/admin-main.png)
 
+- 주문
+- ![ERD](WebContent/gif/order.gif)
+
+- 포인트 적립 확인
+- ![ERD](WebContent/gif/point.gif)
+
+- 주문 취소
+- ![ERD](WebContent/gif/point.gif)
+
+- 재고 수량 관리
+- ![ERD](WebContent/gif/stockquantity.gif)
+
+- 조건에 맞는 검색기능
+- ![ERD](WebContent/gif/search.gif)
 ---
 
 ## 🧑‍💻 담당 역할
