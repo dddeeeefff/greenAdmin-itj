@@ -30,16 +30,21 @@ public class SellProcStatusCtrl extends HttpServlet {
 		SellProcStatusSvc sellProcStatusSvc = new SellProcStatusSvc();
 		
 		int result = sellProcStatusSvc.upStatus(si);
-		
-		if (result == 1) {
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = response.getWriter();
+
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		if (result >= 1) {
     		out.println("<script>");
     		out.println("alert('수정이 완료되었습니다.');");
     		out.println("location.href='sell_view?siid=" + siid + "';");
     		out.println("</script>");
-    		out.close();
-    	} 
+    	} else {
+			out.println("<script>");
+			out.println("alert('상태 변경에 실패했습니다.');");
+			out.println("history.back();");
+			out.println("</script>");
+		}
+		out.close();
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);

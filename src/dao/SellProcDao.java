@@ -236,21 +236,77 @@ public class SellProcDao {
 		return sellInfo;
 	}
 	
+//	public int upStatus(SellInfo si) {
+//	// 송장 및 상태 변경
+//		Statement stmt = null;
+//		int result = 0;
+//		try {
+//			stmt = conn.createStatement();
+//			String sql = "update t_sell_info set si_status = '" + si.getSi_status() + "' where si_id = '" + si.getSi_id() + "'";
+//			System.out.println(sql);
+//			result = stmt.executeUpdate(sql);
+//		}catch(Exception e){
+//			System.out.println("SellProcDao 클래스의 upStatus() 메소드 오류");
+//			e.printStackTrace();
+//		}finally {
+//			close(stmt);
+//		}
+//		return result;
+//	}
+
 	public int upStatus(SellInfo si) {
-	// 송장 및 상태 변경
 		Statement stmt = null;
+		Statement stmt2 = null;
+		ResultSet rs = null;
 		int result = 0;
+
 		try {
 			stmt = conn.createStatement();
-			String sql = "update t_sell_info set si_status = '" + si.getSi_status() + "' where si_id = '" + si.getSi_id() + "'"; 
+
+			// 1. 상태 변경
+			String sql = "update t_sell_info set si_status = '" + si.getSi_status() + "' where si_id = '" + si.getSi_id() + "'";
 			System.out.println(sql);
 			result = stmt.executeUpdate(sql);
-		}catch(Exception e){
+
+			// 2. 배송완료 상태일 경우 포인트 적립 로직 수행
+			if (si.getSi_status().equals("d")) {
+				// si 정보 다시 조회
+				sql = "select mi_id, si_pay, si_upoint from t_sell_info where si_id = '" + si.getSi_id() + "'";
+				rs = stmt.executeQuery(sql);
+				if (rs.next()) {
+					String miid = rs.getString("mi_id");
+					int totalPay = rs.getInt("si_pay");
+					int usePoint = rs.getInt("si_upoint");
+					int savePoint = (totalPay - usePoint) / 100;
+
+					if (savePoint > 0) {
+						stmt2 = conn.createStatement();
+
+						// 포인트 적립
+						sql = "update t_member_info set mi_point = mi_point + " + savePoint + " where mi_id = '" + miid + "'";
+						System.out.println(sql);
+						result += stmt2.executeUpdate(sql);
+
+						// 포인트 적립 내역 추가
+						sql = "insert into t_member_point(mi_id, mp_su, mp_point, mp_desc, mp_detail) " +
+								"values('" + miid + "', 's', '" + savePoint + "', '상품 구매 적립', '" + si.getSi_id() + "')";
+						System.out.println(sql);
+						result += stmt2.executeUpdate(sql);
+
+						stmt2.close();
+					}
+				}
+			}
+		} catch (Exception e) {
 			System.out.println("SellProcDao 클래스의 upStatus() 메소드 오류");
 			e.printStackTrace();
-		}finally {
-			close(stmt);
+		} finally {
+			if (rs != null) close(rs);
+			if (stmt != null) close(stmt);
+//			close(rs);
+//			close(stmt);
 		}
+
 		return result;
 	}
 	

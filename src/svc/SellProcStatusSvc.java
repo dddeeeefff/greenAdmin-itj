@@ -15,7 +15,7 @@ public class SellProcStatusSvc {
 		sellProcDao.setConnection(conn);
 		
 		result = sellProcDao.upStatus(si);
-		if (result == 1)	commit(conn);
+		if (result >= 1)	commit(conn);
 		else				rollback(conn);
 		close(conn);
 		
